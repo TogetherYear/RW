@@ -1,0 +1,14 @@
+{
+    "name": "wasm-demo",
+    "version": "0.0.1",
+    "description": "wasm-demo",
+    "main": "index.js",
+    "scripts": {
+        "prettier": "prettier --write .",
+        "build": "wasm-pack build --target web --release  --out-dir ./Build"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "prettier": "^3.3.3"
+    }
+}
