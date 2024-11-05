@@ -1,4 +1,4 @@
-import init, { Run, ConvertImage } from '../Build/index.js';
+import init, { ConvertPngImageFileToBase64 } from '../Build/index.js';
 
 await init(new Object());
 
@@ -9,8 +9,13 @@ input.addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
-        const uint8Array = new Uint8Array(reader.result);
-        let s = ConvertImage(uint8Array);
-        console.log(s);
+        const pngBuffer = new Uint8Array(reader.result);
+        ConvertPngImageFileToBase64(pngBuffer)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.error('err:', err);
+            });
     };
 });

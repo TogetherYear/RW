@@ -1,8 +1,7 @@
 #![allow(non_snake_case)]
-use std::io::{Cursor, Read, Seek, SeekFrom};
-
 use base64::{engine::general_purpose, Engine};
 use image::DynamicImage;
+use std::io::{Cursor, Read, Seek, SeekFrom};
 use wasm_bindgen::prelude::*;
 
 #[cfg(feature = "wee_alloc")]
@@ -16,13 +15,13 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn ConvertImage(buf: &[u8]) -> Result<String, JsValue> {
+pub async fn ConvertPngImageFileToBase64(buf: &[u8]) -> Result<String, String> {
     match GetImageFromBuffer(&buf) {
         Ok(img) => match GetBase64FromImage(&img) {
             Ok(b) => Ok(b),
-            Err(_) => Err(JsValue::null()),
+            Err(_) => Err(format!("转换base64失败")),
         },
-        Err(_) => Err(JsValue::null()),
+        Err(_) => Err(format!("请传入png图片")),
     }
 }
 
