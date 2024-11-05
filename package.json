@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "prettier": "prettier --write .",
-        "build": "wasm-pack build --target web --release --out-dir ./Build"
+        "build": "wasm-pack build --target web --release --out-name index --out-dir ./Build"
     },
     "license": "MIT",
     "devDependencies": {
